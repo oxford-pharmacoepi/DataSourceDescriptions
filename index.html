@@ -49,7 +49,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of DataSourceDescriptions is to …</p>
+<p>DataSourceDescriptions provides utilities for creating, validating, importing, and exporting structured descriptions of OMOP data sources. A data source description records administrative details, data collection characteristics, and OMOP standardisation notes in a predictable JSON- and CSV-friendly format.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -61,24 +61,58 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>Create a data source description from a named list. Required fields are checked, optional fields are filled with <code>NA</code>, and descriptions are named by data source acronym.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://oxford-pharmacoepi.github.io/DataSourceDescriptions/">DataSourceDescriptions</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
+<span></span>
+<span><span class="va">description</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/newDataSourceDescription.html">newDataSourceDescription</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  administrative_details <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    name_of_data_source <span class="op">=</span> <span class="st">"Example data source"</span>,</span>
+<span>    data_source_acronym <span class="op">=</span> <span class="st">"EDS"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  data_collection <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    geography <span class="op">=</span> <span class="st">"United Kingdom"</span>,</span>
+<span>    population <span class="op">=</span> <span class="st">"Adults registered in participating practices"</span>,</span>
+<span>    healthcare_setting_type_of_data <span class="op">=</span> <span class="st">"Electronic health records"</span>,</span>
+<span>    data_collection_process <span class="op">=</span> <span class="st">"Data are captured during routine care."</span>,</span>
+<span>    general_representativeness <span class="op">=</span> <span class="st">"Representative of participating practices."</span>,</span>
+<span>    data_source_coding <span class="op">=</span> <span class="st">"Clinical events are recorded using source codes."</span>,</span>
+<span>    source_quality_control <span class="op">=</span> <span class="st">"Source data are checked before release."</span>,</span>
+<span>    linkage <span class="op">=</span> <span class="st">"No external linkage is included."</span>,</span>
+<span>    mortality <span class="op">=</span> <span class="st">"Deaths are captured from primary care records."</span>,</span>
+<span>    source_limitations <span class="op">=</span> <span class="st">"Information recorded outside participating practices may be incomplete."</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  omop_standardisation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    omop_mapping <span class="op">=</span> <span class="st">"Source data are mapped to the OMOP CDM."</span>,</span>
+<span>    omop_quality_control <span class="op">=</span> <span class="st">"Mapped data are checked using OMOP quality checks."</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">description</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── 1 data source description ───────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; - EDS: Example data source</span></span></code></pre></div>
+<p>Descriptions can be written to JSON or CSV and imported again.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      speed           dist       </span></span>
-<span><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></span>
-<span><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></span>
-<span><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></span>
-<span><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
-<span><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></span></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date. <code>devtools::build_readme()</code> is handy for this.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub and CRAN.</p>
+<code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"data-source-descriptions-"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/exportDataSourceDescription.html">exportDataSourceDescription</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">description</span>, path <span class="op">=</span> <span class="va">path</span>, type <span class="op">=</span> <span class="st">"json"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">imported</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/importDataSourceDescription.html">importDataSourceDescription</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 1 data source description imported.</span></span>
+<span></span>
+<span><span class="va">imported</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ── 1 data source description ───────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; - EDS: Example data source</span></span></code></pre></div>
+<p>The package can also import bundled descriptions:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"descriptions"</span>, package <span class="op">=</span> <span class="st">"DataSourceDescriptions"</span><span class="op">)</span></span>
+<span><span class="va">descriptions</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/importDataSourceDescription.html">importDataSourceDescription</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
+<span><span class="va">descriptions</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
@@ -108,6 +142,8 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/oxford-pharmacoepi/DataSourceDescriptions/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/oxford-pharmacoepi/DataSourceDescriptions/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=DataSourceDescriptions" class="external-link"><img src="https://www.r-pkg.org/badges/version/DataSourceDescriptions" alt="CRAN status"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
 
