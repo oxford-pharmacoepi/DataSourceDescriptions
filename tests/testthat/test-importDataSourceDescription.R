@@ -8,7 +8,7 @@ test_that("import data source description json", {
     x = description,
     path = description_path
   ))
-  expect_true("EDS.json" %in% list.files(description_path))
+  expect_true("eds.json" %in% list.files(description_path))
 
   imported <- importDataSourceDescription(path = description_path)
   expect_identical(description, imported)
@@ -36,14 +36,14 @@ test_that("import data source description detects supported file types", {
     type = "csv"
   )
 
-  expect_true("EDS.json" %in% list.files(description_path))
-  expect_true("ADS.csv" %in% list.files(description_path))
+  expect_true("eds.json" %in% list.files(description_path))
+  expect_true("ads.csv" %in% list.files(description_path))
 
   imported <- importDataSourceDescription(path = description_path)
   expect_identical(description, imported)
 
   imported <- importDataSourceDescription(
-    path = file.path(description_path, "ADS.csv")
+    path = file.path(description_path, "ads.csv")
   )
   expect_identical(description["ADS"], imported)
 
@@ -61,10 +61,10 @@ test_that("import data source description csv", {
     path = description_path,
     type = "csv"
   ))
-  expect_true("EDS.csv" %in% list.files(description_path))
+  expect_true("eds.csv" %in% list.files(description_path))
 
   imported <- importDataSourceDescription(
-    path = file.path(description_path, "EDS.csv"),
+    path = file.path(description_path, "eds.csv"),
     type = "csv"
   )
   expect_identical(description, imported)
