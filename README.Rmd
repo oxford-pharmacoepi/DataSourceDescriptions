@@ -78,6 +78,8 @@ dir.create(path = path)
 
 exportDataSourceDescription(x = description, path = path, type = "json")
 
+list.files(path = path)
+
 imported <- importDataSourceDescription(path = path)
 
 imported
@@ -85,7 +87,7 @@ imported
 
 The package can also import bundled descriptions:
 
-```{r bundled-descriptions, eval = FALSE}
+```{r}
 path <- system.file("descriptions", package = "DataSourceDescriptions")
 descriptions <- importDataSourceDescription(path = path)
 descriptions

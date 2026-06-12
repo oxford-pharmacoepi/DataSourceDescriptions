@@ -75,6 +75,9 @@ dir.create(path = path)
 
 exportDataSourceDescription(x = description, path = path, type = "json")
 
+list.files(path = path)
+#> [1] "EDS.json"
+
 imported <- importDataSourceDescription(path = path)
 #> 1 data source description imported.
 
@@ -90,5 +93,10 @@ The package can also import bundled descriptions:
 ``` r
 path <- system.file("descriptions", package = "DataSourceDescriptions")
 descriptions <- importDataSourceDescription(path = path)
+#> 1 data source description imported.
 descriptions
+#> 
+#> ── 1 data source description ───────────────────────────────────────────────────
+#> 
+#> - CPRD GOLD: Clinical Practice Research Datalink GOLD
 ```
