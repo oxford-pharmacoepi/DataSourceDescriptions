@@ -9,6 +9,13 @@
 Utilities for creating, validating, importing, and exporting structured OMOP
 data source descriptions.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://oxford-pharmacoepi.github.io/DataSourceDescriptions/}
+}
+
+}
 \author{
 \strong{Maintainer}: Edward Burn \email{edward.burn@ndorms.ox.ac.uk} (\href{https://orcid.org/0000-0002-9286-1128}{ORCID})
 
