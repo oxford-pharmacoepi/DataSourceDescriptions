@@ -37,7 +37,7 @@ named by data source acronym.
 ``` r
 library(DataSourceDescriptions)
 
-description <- newDataSourceDescription(list(
+description <- newDataSourceDescription(list(source1 = list(
   administrative_details = list(
     name_of_data_source = "Example data source",
     data_source_acronym = "EDS"
@@ -58,7 +58,7 @@ description <- newDataSourceDescription(list(
     omop_mapping = "Source data are mapped to the OMOP CDM.",
     omop_quality_control = "Mapped data are checked using OMOP quality checks."
   )
-))
+)))
 
 description
 #> 
