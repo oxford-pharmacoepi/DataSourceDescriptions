@@ -16,6 +16,7 @@
 #' }
 #'
 visualiseDataSourceDescription <- function(dataSourceName = NULL) {
+  rlang::check_installed(c("shiny", "bslib", "commonmark"))
   sources <- dataSources()
   dataSourceName <- validateDataSourceName(dataSourceName, names(sources))
   sources <- sources[dataSourceName]
@@ -56,8 +57,7 @@ dataSources <- function() {
 dataSourceMarkdownHtml <- function(description) {
   dataSourceMarkdown(description) |>
     commonmark::markdown_html() |>
-    htmltools::HTML() |>
-    shiny::tagList()
+    shiny::HTML()
 }
 
 dataSourceMarkdown <- function(description) {
