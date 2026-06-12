@@ -1,0 +1,32 @@
+Package: DataSourceDescriptions
+Title: Data Source Descriptions
+Version: 0.0.0.9000
+Authors@R: c(
+    person(
+        "Edward", "Burn", email = "edward.burn@ndorms.ox.ac.uk",
+        role = c("aut", "cre"), comment = c(ORCID = "0000-0002-9286-1128")
+    ),
+    person(
+        "Martí", "Català", email = "marti.catalasabate@ndorms.ox.ac.uk",
+        role = c("aut"), comment = c(ORCID = "0000-0003-3308-9905")
+    )
+    )
+Description: Creates, validates, imports, and exports structured descriptions of
+    data sources.
+License: Apache License (>= 2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    cli,
+    dplyr,
+    omopgenerics,
+    purrr,
+    rlang
+Depends:
+    R (>= 4.1)
+Suggests:
+    jsonlite,
+    readr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
