@@ -1,3 +1,6 @@
+# Avoid repeated testthat warnings when the outer test process sets LC_ALL.
+Sys.unsetenv("LC_ALL")
+
 sampleDataSourceDescription <- function(acronym = "EDS") {
   list(
     administrative_details = list(

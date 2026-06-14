@@ -92,3 +92,21 @@ path <- system.file("descriptions", package = "DataSourceDescriptions")
 descriptions <- importDataSourceDescription(path = path)
 descriptions
 ```
+
+### Adding data source descriptions to a shiny app
+
+The function `visualiseDataSourceDescription()` allows you to visualise the `data_source_description` in a shiny app, see snippet code:
+
+```{r, eval=FALSE}
+library(bslib)
+library(shiny)
+
+ui <- page_navbar(
+  nav_panel(
+    title = "Data Source Description",
+    icon = icon("file-lines"),
+    visualiseDataSourceDescription()
+  )
+)
+ui
+```
