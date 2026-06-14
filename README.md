@@ -76,7 +76,7 @@ dir.create(path = path)
 exportDataSourceDescription(x = description, path = path, type = "json")
 
 list.files(path = path)
-#> [1] "EDS.json"
+#> [1] "eds.json"
 
 imported <- importDataSourceDescription(path = path)
 #> 1 data source description imported.
@@ -99,4 +99,23 @@ descriptions
 #> ── 1 data source description ───────────────────────────────────────────────────
 #> 
 #> - CPRD GOLD: Clinical Practice Research Datalink GOLD
+```
+
+### Adding data source descriptions to a shiny app
+
+The function `visualiseDataSourceDescription()` allows you to visualise
+the `data_source_description` in a shiny app, see snippet code:
+
+``` r
+library(bslib)
+library(shiny)
+
+ui <- page_navbar(
+  nav_panel(
+    title = "Data Source Description",
+    icon = icon("file-lines"),
+    visualiseDataSourceDescription()
+  )
+)
+ui
 ```
