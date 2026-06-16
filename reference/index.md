@@ -2,6 +2,12 @@
 
 ## All functions
 
+- [`availableDataSourceDescriptions()`](https://oxford-pharmacoepi.github.io/DataSourceDescriptions/reference/availableDataSourceDescriptions.md)
+  : Get available data source descriptions
+
+- [`downloadDataSourceDescription()`](https://oxford-pharmacoepi.github.io/DataSourceDescriptions/reference/downloadDataSourceDescription.md)
+  : Download data source descriptions
+
 - [`emptyDataSourceDescription()`](https://oxford-pharmacoepi.github.io/DataSourceDescriptions/reference/emptyDataSourceDescription.md)
   :
 
