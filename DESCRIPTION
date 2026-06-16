@@ -20,10 +20,12 @@ RoxygenNote: 7.3.3
 Imports:
     cli,
     dplyr,
-    lifecycle,
     omopgenerics,
     purrr,
-    rlang
+    rlang,
+    gh,
+    stringr,
+    omopgenerics
 Depends:
     R (>= 4.1)
 Suggests:
