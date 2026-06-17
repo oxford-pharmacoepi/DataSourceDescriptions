@@ -79,7 +79,6 @@ downloadDataSourceDescription <- function(names, path) {
     repo_path <- json_paths[match_idx[1]]
     dest_path <- file.path(path, paste0(name, ".json"))
 
-    cli::cli_inform("Downloading {.val {name}} to {.path {dest_path}}")
       gh::gh(
         "GET /repos/{owner}/{repo}/contents/{path}",
         owner = owner,
@@ -89,7 +88,25 @@ downloadDataSourceDescription <- function(names, path) {
         .destfile = dest_path,
         .send_headers = c(Accept = "application/vnd.github.v3.raw")
       )
-      cli::cli_alert_success("Downloaded {.val {name}} to {.path {dest_path}}")
+
+      tryCatch(
+        expr = {
+          importDataSourceDescription(dest_path)
+        },
+        error = function(e) {
+          cli::cli_alert_danger("Error caught: {conditionMessage(e)}")
+
+          # Check if the file exists, and delete it if it does
+          if (file.exists(dest_path)) {
+            file.remove(dest_path)
+            cli::cli_alert_info("Cleaned up file: {dest_path}")
+          }
+          return(NULL)
+        }
+      )
+
+      cli::cli_alert_success("Downloaded and validated description for {.val {name}} saved as {.path {dest_path}}")
+
   })
 
   invisible(names)

@@ -88,13 +88,12 @@ test_that("import data source description skips invalid json", {
     description_path, "not_a_description.json"
   ))
 
-  expect_warning(imported <- importDataSourceDescription(path = description_path))
-  expect_identical(description, imported)
+  expect_error(imported <- importDataSourceDescription(path = description_path))
 
   unlink(description_path, recursive = TRUE)
 })
 
-test_that("import data source description skips invalid csv", {
+test_that("import data source description error invalid csv", {
   skip_if_not_installed("readr")
 
   description_path <- tempDescriptionPath()
@@ -104,11 +103,10 @@ test_that("import data source description skips invalid csv", {
     file = file.path(description_path, "not_a_description.csv")
   )
 
-  expect_warning(imported <- importDataSourceDescription(
+  expect_error(imported <- importDataSourceDescription(
     path = description_path,
     type = "csv"
   ))
-  expect_identical(imported, emptyDataSourceDescription())
 
   unlink(description_path, recursive = TRUE)
 })

@@ -62,7 +62,7 @@ findFiles <- function(path, type, recursive, call = parent.frame()) {
 }
 
 readDataSourceDescription <- function(file, type) {
-  tryCatch({
+
     if (is.null(type)) {
       type <- tolower(tools::file_ext(file))
     }
@@ -76,11 +76,7 @@ readDataSourceDescription <- function(file, type) {
     }
     description |>
       newDataSourceDescription()
-  },
-  error = function(e) {
-    cli::cli_warn("skipping file: {.path {file}} due to: {e}.")
-    return(NULL)
-  })
+
 }
 
 dataSourceDescriptionFromTable <- function(x, call = parent.frame()) {
