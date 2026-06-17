@@ -74,8 +74,16 @@ readDataSourceDescription <- function(file, type) {
       description <- readr::read_csv(file = file, show_col_types = FALSE) |>
         dataSourceDescriptionFromTable()
     }
-    description |>
+
+  description <- description |>
       newDataSourceDescription()
+
+  # check file name matches cdm name
+  if(tools::file_path_sans_ext(basename(file)) != description[[1]]$administrative_details$data_source_acronym){
+    cli::cli_abort("File name does not match data source acronym")
+  }
+
+  description
 
 }
 

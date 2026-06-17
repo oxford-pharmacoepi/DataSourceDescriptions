@@ -22,7 +22,7 @@ exportDataSourceDescription <- function(x, path, type = "json") {
 
 writeDataSourceDescription <- function(x, path, type) {
   purrr::imap_chr(x, \(description, nm) {
-    file <- file.path(path, paste0(omopgenerics::toSnakeCase(nm), ".", type))
+    file <- file.path(path, paste0(nm, ".", type))
     if (type == "json") {
       rlang::check_installed("jsonlite")
       jsonlite::write_json(

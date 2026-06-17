@@ -8,7 +8,7 @@ test_that("import data source description json", {
     x = description,
     path = description_path
   ))
-  expect_true("eds.json" %in% list.files(description_path))
+  expect_true(stringr::str_detect(list.files(description_path), names(description)))
 
   imported <- importDataSourceDescription(path = description_path)
   expect_identical(description, imported)
@@ -35,15 +35,13 @@ test_that("import data source description detects supported file types", {
     path = description_path,
     type = "csv"
   )
-
-  expect_true("eds.json" %in% list.files(description_path))
-  expect_true("ads.csv" %in% list.files(description_path))
+  expect_true(all(stringr::str_detect(list.files(description_path), names(description))))
 
   imported <- importDataSourceDescription(path = description_path)
   expect_identical(description, imported)
 
   imported <- importDataSourceDescription(
-    path = file.path(description_path, "ads.csv")
+    path = file.path(description_path, "ADS.csv")
   )
   expect_identical(description["ADS"], imported)
 
@@ -61,10 +59,10 @@ test_that("import data source description csv", {
     path = description_path,
     type = "csv"
   ))
-  expect_true("eds.csv" %in% list.files(description_path))
+  expect_true(stringr::str_detect(list.files(description_path), names(description)))
 
   imported <- importDataSourceDescription(
-    path = file.path(description_path, "eds.csv"),
+    path = file.path(description_path, "EDS.csv"),
     type = "csv"
   )
   expect_identical(description, imported)
@@ -143,5 +141,5 @@ test_that("bundled data source descriptions can be imported", {
 
   expect_no_error(descriptions <- importDataSourceDescription(description_path))
   expect_true(inherits(descriptions, "data_source_description"))
-  expect_true("CPRD GOLD" %in% names(descriptions))
+  expect_true("cprd_gold" %in% names(descriptions))
 })

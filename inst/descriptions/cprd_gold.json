@@ -1,7 +1,7 @@
 {
   "administrative_details": {
     "name_of_data_source": "Clinical Practice Research Datalink GOLD",
-    "data_source_acronym": "CPRD GOLD",
+    "data_source_acronym": "cprd_gold",
     "data_source_website": "https://www.cprd.com/data/primary-care-data/cprd-gold",
     "hma_ema_catalogue": "https://catalogues.ema.europa.eu/data-source/1111113",
     "main_references": "Sanchez-Santos MT, Axson EL,Dedman D,Delmestri A \"Data Resource Profile Update: CPRD GOLD.\" International journal of epidemiology (2025): 40499193"
