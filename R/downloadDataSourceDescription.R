@@ -16,9 +16,11 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(dataSourceDescriptions)
+#'
 #' # Assuming you have a folder named "data_sources" in your project directory
 #' downloadDataSourceDescription(
-#'   names = c("CPRD_AURUM"),
+#'   dataSourceName = c("CPRD_AURUM"),
 #'   path = here::here("data_sources")
 #' )
 #' }

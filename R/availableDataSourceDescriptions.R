@@ -9,6 +9,8 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(dataSourceDescriptions)
+#'
 #' availableDataSourceDescriptions()
 #' }
 availableDataSourceDescriptions <- function() {
