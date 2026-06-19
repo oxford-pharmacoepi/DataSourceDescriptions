@@ -21,10 +21,10 @@ availableDataSourceDescriptions <- function() {
 }
 
 getOpt <- function(key, default) {
-  keyEnv <- paste0("data_source_description.", key)
+  keyEnv <- paste0("DATA_SOURCE_DECRIPTION_", toupper(key))
   res <- Sys.getenv(x = keyEnv, unset = "")
   if (res == "") {
-    keyOpt <- paste0("DATA_SOURCE_DECRIPTION_", toupper(key))
+    keyOpt <- paste0("data_source_description.", key)
     res <- getOption(x = keyOpt, default = default)
   }
   return(res)

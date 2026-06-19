@@ -72,7 +72,8 @@ downloadDataSourceDescription <- function(dataSourceName, path = getwd()) {
 
     out <- tryCatch(
       expr = {
-        importDataSourceDescription(dest_path)
+        importDataSourceDescription(dest_path) |>
+          suppressMessages()
       },
       error = function(e) {
         cli::cli_alert_danger("Error caught: {conditionMessage(e)}")

@@ -37,6 +37,8 @@ pak::pak("oxford-pharmacoepi/DataSourceDescriptions")
 
 ## Example
 
+### Create data source description
+
 Create a data source description from a named list. Required fields are checked,
 optional fields are filled with `NA`, and descriptions are named by data source
 acronym.
@@ -70,6 +72,8 @@ description <- newDataSourceDescription(list(source1 = list(
 description
 ```
 
+### Export and Import data source descriptions
+
 Descriptions can be written to JSON or CSV and imported again.
 
 ```{r}
@@ -85,10 +89,37 @@ imported <- importDataSourceDescription(path = path)
 imported
 ```
 
-The package can also import bundled descriptions:
+### Download a data source descriptions
 
+The package also allows you to download descriptions from a github repository
+By default the following repository is used:
+<https://github.com/oxford-pharmacoepi/DataSourceDescriptionsLibrary>.
+
+For example you can download "CPRD GOLD" description as:
 ```{r}
-path <- system.file("descriptions", package = "DataSourceDescriptions")
+path <- file.path(tempdir(), "test")
+dir.create(path = path)
+downloadDataSourceDescription(dataSourceName = "CPRD GOLD", path = path)
 descriptions <- importDataSourceDescription(path = path)
 descriptions
+```
+
+#### Customise repository to download
+
+You can customise the source to download data sources using either environmental
+variables:
+
+```
+DATA_SOURCE_DECRIPTION_OWNER="oxford-pharmacoepi"
+DATA_SOURCE_DECRIPTION_REPO="DataSourceDescriptionsLibrary"
+DATA_SOURCE_DECRIPTION_BRANCH="main"
+DATA_SOURCE_DECRIPTION_TOKEN="..."
+```
+
+or using options:
+```{r}
+options(data_source_description.owner = "oxford-pharmacoepi")
+options(data_source_description.repo = "DataSourceDescriptionsLibrary")
+options(data_source_description.branch = "main")
+options(data_source_description.token = "...")
 ```
