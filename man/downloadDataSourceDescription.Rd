@@ -4,18 +4,18 @@
 \alias{downloadDataSourceDescription}
 \title{Download data source descriptions}
 \usage{
-downloadDataSourceDescription(names, path)
+downloadDataSourceDescription(dataSourceName, path = getwd())
 }
 \arguments{
-\item{names}{A character vector of data source names to download. You can use
-\code{availableDataSourceDescriptions()} to find available descriptions. If
-NULL, all descriptions will be saved}
+\item{dataSourceName}{A character vector of data source names to download.
+You can use \code{availableDataSourceDescriptions()} to find available
+descriptions. If \code{NULL}, all descriptions will be saved.}
 
 \item{path}{A character string specifying the local directory where the
 files should be saved.}
 }
 \value{
-Invisible \code{NULL}. Called for its side effect of downloading files.
+Invisible dataSourceName. The \code{json} files will be downloaded in path.
 }
 \description{
 Downloads specific data source descriptions from the

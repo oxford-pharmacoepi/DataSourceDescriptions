@@ -137,9 +137,9 @@ test_that("import data source description handles directories with no csv", {
 test_that("bundled data source descriptions can be imported", {
   skip_if_not_installed("jsonlite")
 
-  description_path <- system.file("descriptions", package = "DataSourceDescriptions")
+  description_path <- system.file(package = "DataSourceDescriptions")
 
   expect_no_error(descriptions <- importDataSourceDescription(description_path))
   expect_true(inherits(descriptions, "data_source_description"))
-  expect_true("cprd_gold" %in% names(descriptions))
+  expect_true("test_description" %in% names(descriptions))
 })

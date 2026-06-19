@@ -12,25 +12,47 @@
 #' availableDataSourceDescriptions()
 #' }
 availableDataSourceDescriptions <- function() {
-
-  owner <- "oxford-pharmacoepi"
-  repo <- "DataSourceDescriptionsLibrary"
-  working_branch <- "main"
-  working_token <- NULL
-
-  tree_data <- gh::gh(
-    "GET /repos/{owner}/{repo}/git/trees/{branch}",
-    owner = owner,
-    repo = repo,
-    branch = working_branch,
-    recursive = 1,
-    .token = working_token
-  )
-
-  descriptions <- purrr::map_chr(tree_data$tree, "path") |>
+  descriptions <- purrr::map_chr(getRepoTree()$tree, "path") |>
     stringr::str_subset("(?i)\\.json$") |>
     basename() |>
     stringr::str_remove("(?i)\\.json$")
 
   return(descriptions)
+}
+
+getOpt <- function(key, default) {
+  keyEnv <- paste0("data_source_description.", key)
+  res <- Sys.getenv(x = keyEnv, unset = "")
+  if (res == "") {
+    keyOpt <- paste0("DATA_SOURCE_DECRIPTION_", toupper(key))
+    res <- getOption(x = keyOpt, default = default)
+  }
+  return(res)
+}
+dsdOwner <- function() {
+  getOpt(key = "owner", default = "oxford-pharmacoepi")
+}
+dsdRepo <- function() {
+  getOpt(key = "repo", default = "DataSourceDescriptionsLibrary")
+}
+dsdBranch <- function() {
+  getOpt(key = "branch", default = "main")
+}
+dsdToken <- function() {
+  getOpt(key = "token", default = NULL)
+}
+dsdPath <- function() {
+  paste(
+    "https://github.com", dsdOwner(), dsdRepo(), "tree", dsdBranch(), sep = "/"
+  )
+}
+getRepoTree <- function() {
+  gh::gh(
+    "GET /repos/{owner}/{repo}/git/trees/{branch}",
+    owner = dsdOwner(),
+    repo = dsdRepo(),
+    branch = dsdBranch(),
+    recursive = 1,
+    .token = dsdToken()
+  )
 }
