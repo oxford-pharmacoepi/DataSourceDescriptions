@@ -104,7 +104,7 @@ For example you can download “CPRD GOLD” description as:
 path <- file.path(tempdir(), "test")
 dir.create(path = path)
 downloadDataSourceDescription(dataSourceName = "CPRD GOLD", path = path)
-#> ✔ Downloaded and validated description for "CPRD GOLD" saved in '/var/folders/pl/k11lm9710hlgl02nvzx4z9wr0000gp/T//Rtmp4m1Kaa/test/CPRD GOLD.json'
+#> ✔ Downloaded and validated description for "CPRD GOLD" saved in '/var/folders/pl/k11lm9710hlgl02nvzx4z9wr0000gp/T//RtmpRKKnHQ/test/CPRD GOLD.json'
 descriptions <- importDataSourceDescription(path = path)
 #> 1 data source description imported.
 descriptions
@@ -119,10 +119,10 @@ descriptions
 You can customise the source to download data sources using either
 environmental variables:
 
-    DATA_SOURCE_DECRIPTION_OWNER="oxford-pharmacoepi"
-    DATA_SOURCE_DECRIPTION_REPO="DataSourceDescriptionsLibrary"
-    DATA_SOURCE_DECRIPTION_BRANCH="main"
-    DATA_SOURCE_DECRIPTION_TOKEN="..."
+    DATA_SOURCE_DESCRIPTION_OWNER="oxford-pharmacoepi"
+    DATA_SOURCE_DESCRIPTION_REPO="DataSourceDescriptionsLibrary"
+    DATA_SOURCE_DESCRIPTION_BRANCH="main"
+    DATA_SOURCE_DESCRIPTION_TOKEN="..."
 
 or using options:
 

@@ -110,10 +110,10 @@ You can customise the source to download data sources using either environmental
 variables:
 
 ```
-DATA_SOURCE_DECRIPTION_OWNER="oxford-pharmacoepi"
-DATA_SOURCE_DECRIPTION_REPO="DataSourceDescriptionsLibrary"
-DATA_SOURCE_DECRIPTION_BRANCH="main"
-DATA_SOURCE_DECRIPTION_TOKEN="..."
+DATA_SOURCE_DESCRIPTION_OWNER="oxford-pharmacoepi"
+DATA_SOURCE_DESCRIPTION_REPO="DataSourceDescriptionsLibrary"
+DATA_SOURCE_DESCRIPTION_BRANCH="main"
+DATA_SOURCE_DESCRIPTION_TOKEN="..."
 ```
 
 or using options:
