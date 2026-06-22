@@ -15,6 +15,8 @@ oxford-pharmacoepi/DataSourceDescriptionsLibrary GitHub repository.
 }
 \examples{
 \dontrun{
+library(dataSourceDescriptions)
+
 availableDataSourceDescriptions()
 }
 }

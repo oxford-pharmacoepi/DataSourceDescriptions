@@ -30,6 +30,8 @@ pak::pak("oxford-pharmacoepi/DataSourceDescriptions")
 
 ## Example
 
+### Create data source description
+
 Create a data source description from a named list. Required fields are
 checked, optional fields are filled with `NA`, and descriptions are
 named by data source acronym.
@@ -67,6 +69,8 @@ description
 #> - EDS: Example data source
 ```
 
+### Export and Import data source descriptions
+
 Descriptions can be written to JSON or CSV and imported again.
 
 ``` r
@@ -88,10 +92,19 @@ imported
 #> - EDS: Example data source
 ```
 
-The package can also import bundled descriptions:
+### Download a data source descriptions
+
+The package also allows you to download descriptions from a github
+repository By default the following repository is used:
+<https://github.com/oxford-pharmacoepi/DataSourceDescriptionsLibrary>.
+
+For example you can download “CPRD GOLD” description as:
 
 ``` r
-path <- system.file("descriptions", package = "DataSourceDescriptions")
+path <- file.path(tempdir(), "test")
+dir.create(path = path)
+downloadDataSourceDescription(dataSourceName = "CPRD GOLD", path = path)
+#> ✔ Downloaded and validated description for "CPRD GOLD" saved in '/var/folders/pl/k11lm9710hlgl02nvzx4z9wr0000gp/T//RtmpRKKnHQ/test/CPRD GOLD.json'
 descriptions <- importDataSourceDescription(path = path)
 #> 1 data source description imported.
 descriptions
@@ -99,4 +112,23 @@ descriptions
 #> ── 1 data source description ───────────────────────────────────────────────────
 #> 
 #> - CPRD GOLD: Clinical Practice Research Datalink GOLD
+```
+
+#### Customise repository to download
+
+You can customise the source to download data sources using either
+environmental variables:
+
+    DATA_SOURCE_DESCRIPTION_OWNER="oxford-pharmacoepi"
+    DATA_SOURCE_DESCRIPTION_REPO="DataSourceDescriptionsLibrary"
+    DATA_SOURCE_DESCRIPTION_BRANCH="main"
+    DATA_SOURCE_DESCRIPTION_TOKEN="..."
+
+or using options:
+
+``` r
+options(data_source_description.owner = "oxford-pharmacoepi")
+options(data_source_description.repo = "DataSourceDescriptionsLibrary")
+options(data_source_description.branch = "main")
+options(data_source_description.token = "...")
 ```
